@@ -1,7 +1,11 @@
+import Form from "../components/Form";
+
 const First = () => {
   return (
-    <div>First</div>
-  )
-}
+    <div>
+      <Form />
+    </div>
+  );
+};
 
-export default First
+export default First;
