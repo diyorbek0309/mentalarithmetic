@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [isLight, setIsLight] = useState(true);
+  const navHome = useNavigate();
 
   return (
     <div className="Navbar">
-      <h2>MentaLArifmetikA</h2>
+      <h2 className="iconTitle" onClick={() => navHome("/")}>
+        MentaLArifmetikA
+      </h2>
       <div>
         <Link to="contact">Aloqa</Link>
         <Link to="about-app">Dastur haqida</Link>

@@ -9,6 +9,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.iconTitle {
+  cursor: pointer;
+}
+
 .formik {
   text-align: center;
 }
