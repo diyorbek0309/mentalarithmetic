@@ -1,5 +1,11 @@
 import { Formik } from "formik";
-import { FormControl, MenuItem, InputLabel, Select } from "@mui/material";
+import {
+  FormControl,
+  MenuItem,
+  InputLabel,
+  Select,
+  autocompleteClasses,
+} from "@mui/material";
 
 const Form = () => {
   const formikData = [
@@ -79,7 +85,7 @@ const Form = () => {
             }}
           >
             {formikData.map((data) => (
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>
+              <FormControl variant="standard" sx={{ m: 1.5, minWidth: 400 }}>
                 <InputLabel id={data.name}>{data.title}</InputLabel>
                 <Select
                   name={data.name}
