@@ -1,22 +1,48 @@
 import { Formik } from "formik";
-import {
-  FormControl,
-  MenuItem,
-  InputLabel,
-  Slider,
-  Select,
-} from "@mui/material";
+import { FormControl, MenuItem, InputLabel, Select } from "@mui/material";
 
 const Form = () => {
+  const formikData = [
+    {
+      id: 1,
+      title: "Chastota",
+      name: "frequency",
+      countData: [0.2, 0.4, 0.6],
+    },
+    {
+      id: 2,
+      title: "Mavzu",
+      name: "theme",
+      countData: ["Mavzusiz", "Yosh o'rtoqlar+4", "Yosh o'rtoqlar-4"],
+    },
+    {
+      id: 3,
+      title: "Misollar soni",
+      name: "countProblems",
+      countData: [1, 2, 3, 4, 5, 6, 7, 8],
+    },
+    {
+      id: 4,
+      title: "Qatorlar soni",
+      name: "countRows",
+      countData: [5, 6, 7, 8, 9, 10],
+    },
+    {
+      id: 5,
+      title: "Interval",
+      name: "interval",
+      countData: [5, 6, 7, 8, 9, 10],
+    },
+  ];
   return (
-    <div>
+    <div className="formik">
       <Formik
         initialValues={{
-          frequency: 1,
-          theme: "no_theme",
-          countQuestions: 1,
-          countRows: 10,
-          interval: 1,
+          frequency: 0.6,
+          theme: "Mavzusiz",
+          countProblems: 1,
+          countRows: 6,
+          interval: 7,
         }}
         // validate={(values) => {
         //   const errors = {};
@@ -52,36 +78,22 @@ const Form = () => {
               width: 400,
             }}
           >
-            <InputLabel>Chastota:</InputLabel>
-            <Slider
-              aria-label="Frequency"
-              defaultValue={values.frequency}
-              step={0.2}
-              marks
-              min={0.2}
-              max={3}
-              valueLabelDisplay="auto"
-              name="frequency"
-              value={values.frequency}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <FormControl sx={{ m: 1, minWidth: 160 }} size="small">
-              <InputLabel id="theme">Mavzu:</InputLabel>
-              <Select
-                labelId="theme"
-                id="demo-select-small"
-                value={values.theme}
-                label="Mavzu:"
-                onChange={handleChange}
-              >
-                <MenuItem value="no_theme">Mavzusiz</MenuItem>
-                <MenuItem value="young">Yosh o`rtoqlar +4</MenuItem>
-              </Select>
-            </FormControl>
-            {/* Misollar soni: 1 - 30 number */}
-            {/* Qatorlar soni: 5 - 30 */}
-            {/* Interval: 1 - 5 */}
+            {formikData.map((data) => (
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>
+                <InputLabel id={data.name}>{data.title}</InputLabel>
+                <Select
+                  name={data.name}
+                  labelId={data.name}
+                  value={values[data.name]}
+                  onChange={handleChange}
+                >
+                  {data.countData.map((count) => (
+                    <MenuItem value={count}>{count}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ))}
+            <br />
             <button type="submit" disabled={isSubmitting}>
               Boshlash
             </button>
