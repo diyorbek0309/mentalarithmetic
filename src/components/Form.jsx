@@ -4,8 +4,9 @@ import {
   MenuItem,
   InputLabel,
   Select,
-  autocompleteClasses,
+  Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const formikData = [
@@ -40,6 +41,7 @@ const Form = () => {
       countData: [5, 6, 7, 8, 9, 10],
     },
   ];
+  const navig = useNavigate();
   return (
     <div className="formik">
       <Formik
@@ -81,11 +83,16 @@ const Form = () => {
           <form
             onSubmit={handleSubmit}
             style={{
-              width: 400,
+              width: 500,
+              margin: "auto",
             }}
           >
             {formikData.map((data) => (
-              <FormControl variant="standard" sx={{ m: 1.5, minWidth: 400 }}>
+              <FormControl
+                key={data.id}
+                variant="standard"
+                sx={{ m: 1.5, minWidth: 400 }}
+              >
                 <InputLabel id={data.name}>{data.title}</InputLabel>
                 <Select
                   name={data.name}
@@ -100,13 +107,21 @@ const Form = () => {
               </FormControl>
             ))}
             <br />
-            <button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting} variant="contained">
               Boshlash
-            </button>
+            </Button>
           </form>
         )}
       </Formik>
-      {/* Back button */}
+      <br />
+      <Button
+        onClick={() => {
+          navig("/");
+        }}
+        variant="outlined"
+      >
+        Ortga
+      </Button>
     </div>
   );
 };
